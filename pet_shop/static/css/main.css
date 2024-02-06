@@ -1,0 +1,50 @@
+.shop-header {
+    background-image: url("https://s1.1zoom.me/big0/95/395959-svetik.jpg");
+    background-position: right;
+    background-repeat: no-repeat;
+    height: 700px;
+    color: black;
+}
+
+.shop-stats {
+    color: black;
+}
+
+.dogs-header {
+    background-image: url("https://i.pinimg.com/736x/56/e9/ba/56e9badf75e3a7915bba31adc21216f1--funny-pics-funny-stuff.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 700px;
+    
+}
+
+.cats-header {
+    background-image: url("https://media-be.chewy.com/wp-content/uploads/2023/09/22110439/why-do-cats-loaf-faceplant-position.jpg");
+    background-position: right;
+    background-repeat: no-repeat;
+    height: 700px;
+}
+
+.fishes-header {
+    background-image: url("https://i.pinimg.com/736x/18/bb/06/18bb06cde3364ea467f66f945670bf40.jpg");
+    background-position: right;
+    background-repeat: no-repeat;
+    height: 600px;
+    margin-right: 200px
+}
+
+.birds-header {
+    background-image: url("https://media1.tenor.com/m/RDeEpjpCjbsAAAAC/funny-bird.gif");
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 600px;
+    
+}
+
+.reptiles-header {
+    background-image: url("https://www.boredpanda.com/blog/wp-content/uploads/2022/03/fb_image_623adb4f73da5.png");
+    background-position: right;
+    background-repeat: no-repeat;
+    height: 600px;
+    margin-right: 200px
+}
