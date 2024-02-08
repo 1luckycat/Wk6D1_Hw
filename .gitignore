@@ -1,4 +1,4 @@
 pet_env
 .env 
 __pycache__
-.vscode
+image_cache.sqlite

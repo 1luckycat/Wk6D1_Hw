@@ -17,3 +17,12 @@ class RegisterForm(FlaskForm):
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Sign Up')
 
+class ProductForm(FlaskForm):
+    animal_type = StringField('Animal Type', validators=[DataRequired()])
+    color = StringField('Color **Optional')
+    image = StringField('Img url **Optional')
+    description = StringField('Description **Optional')
+    price = DecimalField('Price', validators=[DataRequired()])
+    quantity = IntegerField('Quantity', validators=[DataRequired()])
+    submit = SubmitField('Submit')
+
