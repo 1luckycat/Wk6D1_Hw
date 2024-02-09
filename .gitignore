@@ -1,4 +1,4 @@
 pet_env
 .env 
 __pycache__
-image_cache.sqlite
+image_cache
