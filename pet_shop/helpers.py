@@ -1,6 +1,8 @@
 import requests
 import requests_cache
 import json
+import os   # added this for the api key
+import decimal
 
 
 requests_cache.install_cache('image_cache', backend='sqlite')
@@ -11,7 +13,7 @@ def get_image(search):
     querystring = {"q": search,"gl":"us","lr":"lang_en","num":"10","start":"0"}
 
     headers = {
-	    "X-RapidAPI-Key": "dd03695a23msh3f0275a27580377p1bec69jsn1a5632f1e109",
+	    "X-RapidAPI-Key": os.environ.get('api_key'),   # !!! paste key given to .env and type os.environ.get('key') - a security measure !!!
 	    "X-RapidAPI-Host": "google-search72.p.rapidapi.com"
     }
 
@@ -31,10 +33,10 @@ def get_image(search):
 def get_info(search):
     url = "https://animals-by-api-ninjas.p.rapidapi.com/v1/animals"
 
-    querystring = {"animal_type": search}
+    querystring = {"name": search}   # dont change the key, is required from the site to get the information
 
     headers = {
-	    "X-RapidAPI-Key": "dd03695a23msh3f0275a27580377p1bec69jsn1a5632f1e109",
+	    "X-RapidAPI-Key": os.environ.get('api_key_animal'),    # !!! paste key given to .env and type os.environ.get('key') - a security measure !!!
 	    "X-RapidAPI-Host": "animals-by-api-ninjas.p.rapidapi.com"
     }
 
@@ -43,11 +45,16 @@ def get_info(search):
     data = response.json()
 
     info_url = ""
-
-    if 'items' in data.keys():
-        info_url = data['items'][0]['characteristics']
+    
+    if data:
+        info_url = data[0]['characteristics']['slogan']
+        print(info_url)
     return info_url
 
 
-# I could not figure out how to display it in the description portion.  The website is saying I have made 
-# API calls, but I couldnt get it to display on the shop.  
+ 
+class JSONEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, decimal.Decimal):
+            return str(obj)
+        return json.JSONEncoder(JSONEncoder, self).default(obj)

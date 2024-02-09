@@ -1,16 +1,25 @@
 from flask import Blueprint, flash, redirect, render_template, request
 
 # internal imports
-from pet_shop.models import Product, db
+from pet_shop.models import Product, Customer, Order, db
 from pet_shop.forms import ProductForm
-
+from pet_shop.helpers import get_info
 
 site = Blueprint('site', __name__, template_folder='site_templates')
 
 @site.route('/')
 def shop():
     allprods = Product.query.all()
-    return render_template('shop.html', shop=allprods) 
+    allcustomers = Customer.query.all()
+    allorders = Order.query.all()
+
+    shop_stats = {
+        'products': len(allprods),
+        'sales': sum([order.order_total for order in allorders]),
+        'customers': len(allcustomers)
+    }
+
+    return render_template('shop.html', shop=allprods, stats=shop_stats) 
 
 
 @site.route('/shop/create', methods=['GET', 'POST'])

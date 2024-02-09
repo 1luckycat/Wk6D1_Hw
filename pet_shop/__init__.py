@@ -1,5 +1,8 @@
 from flask import Flask
 from flask_migrate import Migrate
+from flask_cors import CORS
+from flask_jwt_extended import JWTManager
+
 
 
 # internal imports
@@ -12,11 +15,14 @@ from .blueprints5.bird_page.routes import bird
 from .blueprints6.reptile_page.routes import reptile
 from .models import login_manager, db
 from .blueprints.auth.routes import auth
+from .helpers import JSONEncoder 
+from .blueprints.api.routes import api
 
 
 app = Flask(__name__)
 
 app.config.from_object(Config)
+jwt = JWTManager(app)
 
 
 login_manager.init_app(app)
@@ -32,7 +38,11 @@ app.register_blueprint(fish, url_prefix='/fishes')
 app.register_blueprint(bird, url_prefix='/birds')
 app.register_blueprint(reptile, url_prefix='/reptiles')
 app.register_blueprint(auth)
+app.register_blueprint(api)
 
 
 db.init_app(app)
 migrate = Migrate(app, db)
+app.json_encoder = JSONEncoder
+cors = CORS(app)
+
