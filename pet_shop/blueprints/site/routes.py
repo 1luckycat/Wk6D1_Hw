@@ -59,7 +59,7 @@ def update(id):
         pet.animal_type = updateform.animal_type.data
         pet.color = updateform.color.data
         pet.image = pet.set_image(updateform.image.data, updateform.animal_type.data)
-        pet.description = updateform.description.data
+        pet.description = pet.set_info(updateform.description.data, updateform.animal_type.data)
         pet.price = updateform.price.data
         pet.quantity = updateform.quantity.data
 
